@@ -1,6 +1,13 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
 import type { ModuleOptions } from "../module";
 
+/**
+ * Some environments may pass boolean values as strings. This function
+ * will parse the value and return a boolean.
+ *
+ * @param value - The value to parse
+ * @returns - The boolean interpretation of the value
+ */
 const parseStringOrBoolean = (value: string | boolean | undefined) => {
   if (typeof value === "string") {
     return value === "true";
@@ -9,6 +16,13 @@ const parseStringOrBoolean = (value: string | boolean | undefined) => {
   return value;
 };
 
+/**
+ * Add a script tag to the document head asynchronously.
+ *
+ * @param src - The source URL of the script to load
+ * @param crossOrigin - The cross-origin attribute of the script
+ * @returns - A promise that resolves when the script has been loaded
+ */
 const loadScript = (src: string, crossOrigin?: string) => {
   const script = document.createElement("script");
   script.src = src;
@@ -28,6 +42,14 @@ const loadScript = (src: string, crossOrigin?: string) => {
   });
 };
 
+/**
+ * Check if the Matomo tracker has been loaded. This function will
+ * poll the window object until the tracker is available or until
+ * the timeout has been reached.
+ *
+ * @param interval - Time in milliseconds to wait between checks
+ * @param timeout - Time in milliseconds to wait before throwing an error
+ */
 const waitForMatomo = async (
   interval: number = 50,
   timeout: number = 5000
@@ -43,6 +65,10 @@ const waitForMatomo = async (
   }
 };
 
+/**
+ * Define the Matomo plugin. This plugin will load the Matomo tracker
+ * script and configure the tracker with the provided options.
+ */
 export default defineNuxtPlugin(async () => {
   const options = (useRuntimeConfig().public.matomo as ModuleOptions) || {};
 
