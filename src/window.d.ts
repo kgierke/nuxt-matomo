@@ -1,4 +1,1 @@
-interface Window {
-  _paq: any[];
-  Matomo: any;
-}
+/// <reference types="matomo-js-client-types" />

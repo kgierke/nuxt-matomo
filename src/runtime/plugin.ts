@@ -1,5 +1,26 @@
-import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
+import { defineNuxtPlugin, useRouter, useRuntimeConfig } from "#imports";
+import type { RouteLocationNormalized, Router } from "#vue-router";
 import type { ModuleOptions } from "../module";
+
+/**
+ * Get the Matomo tracker instance from the window object.
+ *
+ * @returns - The Matomo tracker instance
+ */
+const getMatomo = () => {
+  return window.Matomo.getAsyncTracker();
+};
+
+/**
+ * Get the full URL of a route.
+ *
+ * @param router - The router instance
+ * @param path - The path of the route
+ * @returns - The full URL of the route
+ */
+const getFullUrl = (router: Router, path: string) => {
+  return `${window.location.origin}${router.resolve(path).href}`;
+};
 
 /**
  * Some environments may pass boolean values as strings. This function
@@ -66,17 +87,59 @@ const waitForMatomo = async (
 };
 
 /**
+ * Track a page view with the Matomo tracker.
+ *
+ * @param router - The router instance
+ * @param to - The route to navigate to
+ * @param from - The route to navigate from
+ */
+const trackPageView = (
+  options: ModuleOptions,
+  router: Router,
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized
+) => {
+  const Matomo = getMatomo();
+
+  const referrerUrl = getFullUrl(router, from.fullPath);
+  const url = getFullUrl(router, to.fullPath);
+
+  if (referrerUrl) {
+    Matomo.setReferrerUrl(referrerUrl);
+  }
+
+  if (url) {
+    Matomo.setCustomUrl(url);
+  }
+
+  if (options.debug) {
+    console.debug(`[Matomo] Tracking page view for ${url}`);
+  }
+
+  Matomo.trackPageView();
+};
+
+/**
  * Define the Matomo plugin. This plugin will load the Matomo tracker
  * script and configure the tracker with the provided options.
  */
 export default defineNuxtPlugin(async () => {
+  const router = useRouter();
   const options = (useRuntimeConfig().public.matomo as ModuleOptions) || {};
 
   const isDebug = parseStringOrBoolean(options.debug);
   const isEnabled = parseStringOrBoolean(options.enabled);
 
+  if (!isEnabled) {
+    if (isDebug) {
+      console.debug("[Matomo] Plugin has been disabled");
+    }
+
+    return;
+  }
+
   if (isDebug) {
-    console.log("[Matomo] Plugin has been enabled");
+    console.debug("[Matomo] Plugin has been enabled");
   }
 
   if ((!options.host || !options.siteId) && isEnabled) {
@@ -98,15 +161,19 @@ export default defineNuxtPlugin(async () => {
 
   window._paq = window._paq || [];
   window._paq.push(["setTrackerUrl", trackerEndpoint]);
-  window._paq.push(["setSiteId", options.siteId]);
+  window._paq.push(["setSiteId", options.siteId as number]);
 
   try {
     await loadScript(trackerScript, crossorigin);
     await waitForMatomo(options.scriptInterval, options.scriptTimeout);
 
     if (isDebug) {
-      console.log("[Matomo] Tracker script has been loaded");
+      console.debug("[Matomo] Tracker script has been loaded");
     }
+
+    router.afterEach((to, from) => {
+      trackPageView(options, router, to, from);
+    });
   } catch (error) {
     console.error("[Matomo] Error loading tracker script:", error);
   }
