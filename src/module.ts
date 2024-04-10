@@ -32,6 +32,13 @@ export interface ModuleOptions {
   siteId?: number;
 
   /**
+   * Enable or disable link tracking
+   *
+   * @default true
+   */
+  enableLinkTracking?: boolean;
+
+  /**
    * The filename of the Matomo tracker script
    *
    * @default "matomo.js"

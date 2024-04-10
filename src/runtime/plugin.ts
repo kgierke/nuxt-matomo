@@ -119,6 +119,10 @@ const trackPageView = (
   }
 
   Matomo.trackPageView();
+
+  if (options.enableLinkTracking) {
+    Matomo.enableLinkTracking();
+  }
 };
 
 /**
@@ -164,6 +168,8 @@ export default defineNuxtPlugin(async () => {
   window._paq = window._paq || [];
   window._paq.push(["setTrackerUrl", trackerEndpoint]);
   window._paq.push(["setSiteId", options.siteId as number]);
+
+  if (options.enableLinkTracking) window._paq.push(["enableLinkTracking"]);
 
   try {
     await loadScript(trackerScript, crossorigin);
