@@ -171,6 +171,8 @@ export default defineNuxtPlugin(async () => {
 
   if (options.enableLinkTracking) window._paq.push(["enableLinkTracking"]);
 
+  if (options.disableCookies) window._paq.push(["disableCookies"]);
+
   try {
     await loadScript(trackerScript, crossorigin);
     await waitForMatomo(options.scriptInterval, options.scriptTimeout);

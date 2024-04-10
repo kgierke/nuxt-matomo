@@ -39,6 +39,13 @@ export interface ModuleOptions {
   enableLinkTracking?: boolean;
 
   /**
+   * Run Matomo without cookies
+   *
+   * @default true
+   */
+  disableCookies?: boolean;
+
+  /**
    * The filename of the Matomo tracker script
    *
    * @default "matomo.js"
@@ -77,6 +84,7 @@ export default defineNuxtModule<ModuleOptions>({
     host: undefined,
     siteId: undefined,
     enableLinkTracking: true,
+    disableCookies: true,
     trackerFileName: "matomo.js",
     crossOrigin: undefined,
     scriptInterval: 50,
