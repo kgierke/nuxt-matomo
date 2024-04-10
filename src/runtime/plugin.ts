@@ -173,6 +173,13 @@ export default defineNuxtPlugin(async () => {
 
   if (options.disableCookies) window._paq.push(["disableCookies"]);
 
+  if (options.enableHeartBeatTimer) {
+    window._paq.push([
+      "enableHeartBeatTimer",
+      options.heartBeatTimerInterval as number,
+    ]);
+  }
+
   try {
     await loadScript(trackerScript, crossorigin);
     await waitForMatomo(options.scriptInterval, options.scriptTimeout);

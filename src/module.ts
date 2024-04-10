@@ -46,6 +46,20 @@ export interface ModuleOptions {
   disableCookies?: boolean;
 
   /**
+   * Enable or disable the heart beat timer
+   *
+   * @default false
+   */
+  enableHeartBeatTimer?: boolean;
+
+  /**
+   * The interval in seconds to send a ping to the Matomo server
+   *
+   * @default 15
+   */
+  heartBeatTimerInterval?: number;
+
+  /**
    * The filename of the Matomo tracker script
    *
    * @default "matomo.js"
@@ -85,6 +99,8 @@ export default defineNuxtModule<ModuleOptions>({
     siteId: undefined,
     enableLinkTracking: true,
     disableCookies: true,
+    enableHeartBeatTimer: false,
+    heartBeatTimerInterval: 15,
     trackerFileName: "matomo.js",
     crossOrigin: undefined,
     scriptInterval: 50,
