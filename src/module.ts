@@ -76,6 +76,7 @@ export default defineNuxtModule<ModuleOptions>({
     debug: false,
     host: undefined,
     siteId: undefined,
+    enableLinkTracking: true,
     trackerFileName: "matomo.js",
     crossOrigin: undefined,
     scriptInterval: 50,
