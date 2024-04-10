@@ -18,7 +18,9 @@ const getMatomo = () => {
  * @param path - The path of the route
  * @returns - The full URL of the route
  */
-const getFullUrl = (router: Router, path: string) => {
+const getFullUrl = (router: Router, path?: string) => {
+  if (!path) return;
+
   return `${window.location.origin}${router.resolve(path).href}`;
 };
 
@@ -97,11 +99,11 @@ const trackPageView = (
   options: ModuleOptions,
   router: Router,
   to: RouteLocationNormalized,
-  from: RouteLocationNormalized
+  from?: RouteLocationNormalized
 ) => {
   const Matomo = getMatomo();
 
-  const referrerUrl = getFullUrl(router, from.fullPath);
+  const referrerUrl = getFullUrl(router, from?.fullPath);
   const url = getFullUrl(router, to.fullPath);
 
   if (referrerUrl) {
@@ -170,6 +172,8 @@ export default defineNuxtPlugin(async () => {
     if (isDebug) {
       console.debug("[Matomo] Tracker script has been loaded");
     }
+
+    trackPageView(options, router, router.currentRoute.value);
 
     router.afterEach((to, from) => {
       trackPageView(options, router, to, from);
