@@ -2,19 +2,19 @@
 Get your module up and running quickly.
 
 Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
+- Name: Nuxt Matomo
 - Package name: @kgierke/nuxt-matomo
 - Description: My new Nuxt module
 -->
 
-# My Module
+# Nuxt Matomo
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+Nuxt Module for easy Matomo integration.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
   <!-- - [🏀 Online playground](https://stackblitz.com/github/@kgierke/nuxt-matomo?file=playground%2Fapp.vue) -->
@@ -24,9 +24,9 @@ My new Nuxt module for doing amazing things.
 
 <!-- Highlight some of the features your module provide here -->
 
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+- ✅ Simple to use
+- ✅ Convenient useMatomo composable
+- ✅ Fully typed Matomo Client
 
 ## Quick Setup
 
@@ -36,7 +36,7 @@ Install the module to your Nuxt application with one command:
 npx nuxi module add @kgierke/nuxt-matomo
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+That's it! You can now use Nuxt Matomo in your Nuxt app ✨
 
 ## Contribution
 
