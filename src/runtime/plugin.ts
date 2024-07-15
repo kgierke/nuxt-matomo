@@ -189,8 +189,6 @@ export default defineNuxtPlugin(async () => {
       console.debug("[Matomo] Tracker script has been loaded");
     }
 
-    trackPageView(options, router, router.currentRoute.value);
-
     router.afterEach((to, from) => {
       trackPageView(options, router, to, from);
     });
