@@ -114,7 +114,7 @@ export default defineNuxtModule<ModuleOptions>({
      */
     nuxt.options.runtimeConfig.public.matomo = defu(
       nuxt.options.runtimeConfig.public.matomo || {},
-      options
+      options,
     );
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`

@@ -23,6 +23,7 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "format": "prettier --write . --ignore-path .gitignore",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch"
@@ -41,6 +42,7 @@
     "eslint": "^8.57.0",
     "matomo-js-client-types": "^5.0.0",
     "nuxt": "^3.12.3",
+    "prettier": "^3.3.3",
     "vitest": "^1.4.0"
   }
 }

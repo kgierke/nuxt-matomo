@@ -75,7 +75,7 @@ const loadScript = (src: string, crossOrigin?: string) => {
  */
 const waitForMatomo = async (
   interval: number = 50,
-  timeout: number = 5000
+  timeout: number = 5000,
 ): Promise<void> => {
   const startTime = Date.now();
 
@@ -99,7 +99,7 @@ const trackPageView = (
   options: ModuleOptions,
   router: Router,
   to: RouteLocationNormalized,
-  from?: RouteLocationNormalized
+  from?: RouteLocationNormalized,
 ) => {
   const Matomo = getMatomo();
 
@@ -150,7 +150,7 @@ export default defineNuxtPlugin(async () => {
 
   if ((!options.host || !options.siteId) && isEnabled) {
     console.error(
-      "[Matomo] Host or SiteId is not defined. Please provide a host and/or siteId in the module options."
+      "[Matomo] Host or SiteId is not defined. Please provide a host and/or siteId in the module options.",
     );
   }
 
