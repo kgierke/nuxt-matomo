@@ -36,7 +36,36 @@ Install the module to your Nuxt application with one command:
 npx nuxi module add @kgierke/nuxt-matomo
 ```
 
+Configure the module to your `nuxt.config.js`:
+
+```js
+export default {
+  modules: ["@kgierke/nuxt-matomo"],
+  matomo: {
+    host: "https://your-matomo-instance.com",
+    siteId: 1,
+  },
+};
+```
+
 That's it! You can now use Nuxt Matomo in your Nuxt app ✨
+
+## Options
+
+| Option                   | Type                  | Default       | Description                                                                                 |
+| ------------------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------- |
+| `host`                   | `string`              | `''`          | The URL of your Matomo instance                                                             |
+| `siteId`                 | `number`              | `0`           | The ID of the site you want to track                                                        |
+| `enabled`                | `boolean` or `string` | `true`        | Whether the module should be enabled or not                                                 |
+| `debug`                  | `boolean` or `string` | `false`       | Whether to enable debug mode                                                                |
+| `enableLinkTracking`     | `boolean`             | `true`        | Whether to enable link tracking                                                             |
+| `disableCookies`         | `boolean`             | `true`        | Whether to disable cookies. Disabled by default for better GDPR Compliance.                 |
+| `enableHeartBeatTimer`   | `boolean`             | `true`        | Whether to enable the heart beat timer                                                      |
+| `heartBeatTimerInterval` | `number`              | `15`          | The interval of the heart beat timer in seconds                                             |
+| `trackerFileName`        | `string`              | `'matomo.js'` | The name of the tracker file                                                                |
+| `crossOrigin`            | `string`              | `''`          | The cross origin configuration for the tracker file                                         |
+| `scriptInterval`         | `number`              | `50`          | The interval in milliseconds to wait between loading the Matomo script and the tracker file |
+| `scriptTimeout`          | `number`              | `5000`        | The timeout in milliseconds to wait for the Matomo script to load                           |
 
 ## Contribution
 
