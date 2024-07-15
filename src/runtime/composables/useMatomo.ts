@@ -17,7 +17,6 @@ export const useMatomo = () => {
    * @param value - Optional: The events object value (eg. the video duration, the song length, etc.)
    * @param callback
    * @param customData
-   * @returns
    */
   const trackEvent = (
     category: string,
@@ -29,7 +28,7 @@ export const useMatomo = () => {
   ) => {
     const matomo = getMatomoTracker();
 
-    return matomo.push([
+    matomo.push([
       "trackEvent",
       category,
       action,
