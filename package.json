@@ -1,6 +1,6 @@
 {
   "name": "@kgierke/nuxt-matomo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Nuxt Module for Matomo Analytics",
   "repository": "@kgierke/nuxt-matomo",
   "license": "MIT",

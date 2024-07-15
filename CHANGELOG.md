@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.3
+
+[compare changes](https://undefined/undefined/compare/v0.0.2...v0.0.3)
+
+### 🩹 Fixes
+
+- Prevent initial double tracking (36e869f)
+
+### ❤️ Contributors
+
+- Kurt Gierke ([@kgierke](http://github.com/kgierke))
+
 ## v0.0.2
 
 
