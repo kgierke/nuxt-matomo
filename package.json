@@ -28,19 +28,19 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.11.1"
+    "@nuxt/kit": "^3.12.3"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/module-builder": "^0.5.5",
-    "@nuxt/schema": "^3.11.1",
-    "@nuxt/test-utils": "^3.12.0",
-    "@types/node": "^20.11.29",
+    "@nuxt/eslint-config": "^0.3.13",
+    "@nuxt/module-builder": "^0.8.1",
+    "@nuxt/schema": "^3.12.3",
+    "@nuxt/test-utils": "^3.13.1",
+    "@types/node": "^20.14.10",
     "changelogen": "^0.5.5",
     "eslint": "^8.57.0",
     "matomo-js-client-types": "^5.0.0",
-    "nuxt": "^3.11.1",
+    "nuxt": "^3.12.3",
     "vitest": "^1.4.0"
   }
 }
