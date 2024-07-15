@@ -91,6 +91,7 @@ const waitForMatomo = async (
 /**
  * Track a page view with the Matomo tracker.
  *
+ * @param options - The module options
  * @param router - The router instance
  * @param to - The route to navigate to
  * @param from - The route to navigate from
