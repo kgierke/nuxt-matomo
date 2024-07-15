@@ -1,4 +1,9 @@
-import { defineNuxtModule, addPlugin, createResolver } from "@nuxt/kit";
+import {
+  defineNuxtModule,
+  addPlugin,
+  createResolver,
+  addImports,
+} from "@nuxt/kit";
 import { defu } from "defu";
 
 // Module options TypeScript interface definition
@@ -119,5 +124,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin({ src: resolver.resolve("./runtime/plugin"), mode: "client" });
+
+    // Add the Matomo Composable
+    addImports({
+      name: "useMatomo",
+      as: "useMatomo",
+      from: resolver.resolve("./runtime/composables/useMatomo"),
+    });
   },
 });
